@@ -1,0 +1,45 @@
+#!/bin/sh
+# Power menu (from Keyitdev dotfiles, GPL-3.0; adapted for the T410)
+
+# rofi theme
+theme="$HOME/.config/rofi/powermenu.rasi"
+
+get_options() {
+  echo " Poweroff"
+  echo " Reboot"
+  echo " Lock"
+  echo " Suspend"
+  echo " Log out"
+}
+
+main() {
+
+  # get choice from rofi
+  choice=$( (get_options) | rofi -dmenu -i -fuzzy -p "" -theme "$theme")
+
+  # run the selected command
+  case $choice in
+  ' Poweroff')
+    systemctl poweroff
+    ;;
+  ' Reboot')
+    systemctl reboot
+    ;;
+  ' Lock')
+    i3lock -c 1b1b25
+    ;;
+  ' Suspend')
+    systemctl suspend
+    ;;
+  ' Log out')
+    i3-msg exit
+    ;;
+  esac
+
+  # done
+  set -e
+}
+
+main &
+
+exit 0

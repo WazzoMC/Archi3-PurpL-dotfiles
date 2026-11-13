@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# t410-screenshot full|area : saves to ~/Pictures/screenshots and copies to clipboard
+dir="$HOME/Pictures/screenshots"; mkdir -p "$dir"
+file="$dir/$(date '+%Y-%m-%d_%H-%M-%S').png"
+case "$1" in
+  area) maim -s -u "$file" || exit 0; msg="Area screenshot taken" ;;
+  *)    maim -u "$file"; msg="Full screen screenshot taken" ;;
+esac
+xclip -selection clipboard -t image/png < "$file"
+notify-send -i "$file" "Screenshot" "$msg"

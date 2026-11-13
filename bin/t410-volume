@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# t410-volume up|down|mute|micmute : changes volume with PipeWire and shows a notification
+sink=@DEFAULT_AUDIO_SINK@
+case "$1" in
+  up)      wpctl set-mute "$sink" 0; wpctl set-volume -l 1.0 "$sink" 5%+ ;;
+  down)    wpctl set-volume "$sink" 5%- ;;
+  mute)    wpctl set-mute "$sink" toggle ;;
+  micmute) wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+           if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then m="Microphone muted"; else m="Microphone on"; fi
+           dunstify -a Microphone -r 101 "Microphone" "$m"; exit 0 ;;
+esac
+out=$(wpctl get-volume "$sink")            # e.g. "Volume: 0.45 [MUTED]"
+vol=$(awk '{printf "%d", $2*100}' <<<"$out")
+if grep -q MUTED <<<"$out"; then text="Muted"; else text="Volume: ${vol}%"; fi
+dunstify -a Speakers -r 100 -h "int:value:$vol" "Speakers" "$text"

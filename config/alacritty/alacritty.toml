@@ -1,0 +1,39 @@
+# Alacritty, colors from Keyitdev dotfiles v3 (GPL-3.0), adapted for a ThinkPad T410
+
+[window]
+padding = { x = 8, y = 8 }
+
+[font]
+size = 10
+normal = { family = "Roboto Mono" }
+
+[colors.primary]
+background = "#1b1b25"
+foreground = "#dedede"
+
+[colors.normal]
+black   = "#15121c"
+red     = "#cb5760"
+green   = "#999f63"
+yellow  = "#d4a067"
+blue    = "#6c90a8"
+magenta = "#776690"
+cyan    = "#528a9b"
+white   = "#eeffff"
+
+[colors.bright]
+black   = "#727480"
+red     = "#cb5760"
+green   = "#999f63"
+yellow  = "#d4a067"
+blue    = "#6c90a8"
+magenta = "#776690"
+cyan    = "#528a9b"
+white   = "#eeffff"
+
+# Super+C / Super+V send Ctrl+Insert / Shift+Insert (see i3 config)
+[keyboard]
+bindings = [
+  { key = "Insert", mods = "Control", action = "Copy" },
+  { key = "Insert", mods = "Shift", action = "Paste" },
+]

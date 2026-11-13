@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Pick a wallpaper from ~/Pictures/wallpapers (Super+Ctrl+Space)
+dir="$HOME/Pictures/wallpapers"
+mkdir -p "$dir"
+mapfile -t files < <(find "$dir" -maxdepth 1 -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) | sort)
+if [ "${#files[@]}" -eq 0 ]; then
+  notify-send "Wallpaper" "Save some images in ~/Pictures/wallpapers first"; exit 0
+fi
+choice=$(for f in "${files[@]}"; do printf '%s\0icon\x1f%s\n' "$(basename "$f")" "$f"; done |
+  rofi -dmenu -i -p "" -show-icons -theme "$HOME/.config/rofi/wallpaper.rasi")
+[ -n "$choice" ] && [ -f "$dir/$choice" ] || exit 0
+ln -sfn "$dir/$choice" "$HOME/.config/wallpaper"
+feh --no-fehbg --bg-fill "$dir/$choice"
+"$HOME/.config/polybar/launch.sh"   # redraw the see-through bar on the new wallpaper

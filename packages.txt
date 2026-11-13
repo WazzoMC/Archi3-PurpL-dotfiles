@@ -1,0 +1,33 @@
+# Installed by install.sh with pacman. One package per line; # starts a comment.
+# desktop
+i3-wm
+i3lock
+xss-lock
+polybar
+rofi
+dunst
+libnotify
+feh
+maim
+xclip
+xdotool
+network-manager-applet
+papirus-icon-theme
+ttf-iosevka-nerd
+ttf-roboto-mono
+noto-fonts
+noto-fonts-emoji
+# terminal + tools
+alacritty
+fastfetch
+yazi
+ffmpegthumbnailer
+poppler
+fd
+ripgrep
+fzf
+zoxide
+git
+# apps
+firefox
+obsidian

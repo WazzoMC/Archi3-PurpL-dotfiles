@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Warns once a minute when the battery is low and not charging.
+warn=20; crit=8
+while sleep 60; do
+  bat=$(ls -d /sys/class/power_supply/BAT* 2>/dev/null | head -1) || continue
+  [ -n "$bat" ] || continue
+  cap=$(cat "$bat/capacity"); st=$(cat "$bat/status")
+  if [ "$st" = "Discharging" ]; then
+    if [ "$cap" -le "$crit" ]; then
+      dunstify -u critical -a Battery -r 102 "Battery critical: ${cap}%" "Plug in the charger now"
+    elif [ "$cap" -le "$warn" ]; then
+      dunstify -a Battery -r 102 "Low battery: ${cap}%" "Plug in the charger soon"
+    fi
+  fi
+done

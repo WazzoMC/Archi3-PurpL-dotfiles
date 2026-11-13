@@ -1,0 +1,67 @@
+# Notifications. Based on Keyitdev dotfiles v3 (GPL-3.0), adapted for a ThinkPad T410
+# (square corners because there's no compositor).
+[global]
+    monitor = 0
+    follow = mouse
+    width = (250,350)
+    height = 200
+    origin = top-right
+    offset = 8x44
+    indicate_hidden = yes
+    progress_bar = true
+    progress_bar_height = 6
+    progress_bar_frame_width = 0
+    highlight = "#999f63"
+    transparency = 0
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 12
+    frame_width = 2
+    frame_color = "#343746"
+    separator_color = frame
+    sort = yes
+    idle_threshold = 120
+    font = Roboto Mono 10
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = no
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+    sticky_history = no
+    history_length = 50
+    dmenu = /usr/bin/rofi -dmenu -p dunst
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    corner_radius = 0
+    ignore_dbusclose = false
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#1b1b25"
+    foreground = "#dedede"
+    timeout = 5
+
+[urgency_normal]
+    background = "#1b1b25"
+    foreground = "#dedede"
+    timeout = 5
+
+[urgency_critical]
+    background = "#1b1b25"
+    foreground = "#dedede"
+    frame_color = "#cb5760"
+    timeout = 0
